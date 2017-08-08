@@ -1,0 +1,18 @@
+package com.ximsfei.arschelper.arsc
+
+public enum Type {
+    NULL(0x0000),
+    STRING_POOL(0x0001),
+    TABLE(0x0002),
+    XML(0x0003),
+    XML_START_NAMESPACE(0x0100),
+    XML_END_NAMESPACE(0x0101),
+    XML_START_ELEMENT(0x0102),
+    XML_END_ELEMENT(0x0103),
+    XML_CDATA(0x0104),
+    XML_RESOURCE_MAP(0x0180),
+    TABLE_PACKAGE(0x0200),
+    TABLE_TYPE(0x0201),
+    TABLE_TYPE_SPEC(0x0202),
+    TABLE_LIBRARY(0x0203);
+}
