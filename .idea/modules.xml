@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Arsc.iml" filepath="$PROJECT_DIR$/.idea/modules/Arsc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/arschelper/arschelper.iml" filepath="$PROJECT_DIR$/.idea/modules/arschelper/arschelper.iml" group="arschelper" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/arschelper/arschelper_main.iml" filepath="$PROJECT_DIR$/.idea/modules/arschelper/arschelper_main.iml" group="arschelper" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/arschelper/arschelper_test.iml" filepath="$PROJECT_DIR$/.idea/modules/arschelper/arschelper_test.iml" group="arschelper" />
+    </modules>
+  </component>
+</project>
