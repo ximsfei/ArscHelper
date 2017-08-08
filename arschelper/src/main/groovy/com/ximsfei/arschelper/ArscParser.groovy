@@ -1,5 +1,7 @@
 package com.ximsfei.arschelper
 
+import com.ximsfei.arschelper.arsc.ChunkHeader
+import com.ximsfei.arschelper.arsc.StringPool
 import com.ximsfei.arschelper.arsc.Table
 import com.ximsfei.arschelper.utils.FileUtils
 
@@ -8,6 +10,7 @@ import java.nio.ByteOrder
 
 class ArscParser {
     Table table
+    StringPool stringPool
 
     ArscParser(File file) {
         init(FileUtils.readFile(file))
@@ -24,5 +27,9 @@ class ArscParser {
         table = Table.parse(data)
         offset = table.header.headSize
         data.position(offset)
+        stringPool = StringPool.parse(data)
+        offset += stringPool.header.size
+        data.position(offset)
+        ChunkHeader.parse(data)
     }
 }
