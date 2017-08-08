@@ -1,16 +1,14 @@
 package com.ximsfei.arschelper
 
-import com.ximsfei.arschelper.arsc.ChunkHeader
-import com.ximsfei.arschelper.arsc.StringPool
-import com.ximsfei.arschelper.arsc.Table
+import com.ximsfei.arschelper.arsc.Chunk
 import com.ximsfei.arschelper.utils.FileUtils
+import com.ximsfei.arschelper.utils.Log
 
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 
 class ArscParser {
-    Table table
-    StringPool stringPool
+    List<Chunk> chunks = new ArrayList<>()
 
     ArscParser(File file) {
         init(FileUtils.readFile(file))
@@ -21,15 +19,10 @@ class ArscParser {
     }
 
     def init(byte[] bytes) {
-        int offset
-        ByteBuffer data = ByteBuffer.wrap(bytes)
-        data.order(ByteOrder.LITTLE_ENDIAN);
-        table = Table.parse(data)
-        offset = table.header.headSize
-        data.position(offset)
-        stringPool = StringPool.parse(data)
-        offset += stringPool.header.size
-        data.position(offset)
-        ChunkHeader.parse(data)
+        ByteBuffer data = ByteBuffer.wrap(bytes).order(ByteOrder.LITTLE_ENDIAN);
+        while (data.hasRemaining()) {
+            chunks.add(Chunk.create(data))
+        }
+        Log.d("chunk size", chunks.size() as String)
     }
 }

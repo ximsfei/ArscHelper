@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DynamicElementsStorage">
+    <option name="containingClasses">
+      <map>
+        <entry key="com.ximsfei.arschelper.arsc.TableChunk">
+          <value>
+            <DClassElement>
+              <option name="name" value="com.ximsfei.arschelper.arsc.TableChunk" />
+              <option name="myName" value="com.ximsfei.arschelper.arsc.TableChunk" />
+              <option name="myMethods">
+                <set>
+                  <DMethodElement>
+                    <option name="name" value="asset" />
+                    <option name="static" value="false" />
+                    <option name="type" value="java.lang.Object" />
+                    <option name="myPairs">
+                      <list>
+                        <ParamInfo>
+                          <option name="name" value="b" />
+                          <option name="type" value="boolean" />
+                        </ParamInfo>
+                      </list>
+                    </option>
+                    <option name="myType" value="java.lang.Object" />
+                    <option name="myStatic" value="false" />
+                    <option name="myName" value="asset" />
+                  </DMethodElement>
+                </set>
+              </option>
+            </DClassElement>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
