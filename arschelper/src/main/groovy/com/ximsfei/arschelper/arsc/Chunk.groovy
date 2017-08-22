@@ -17,6 +17,7 @@ abstract class Chunk {
         TABLE(0x0002),
         XML(0x0003),
         XML_FIRST_CHUNK(0x0100),
+//        XML_START_NAMESPACE(0x0100),
         XML_END_NAMESPACE(0x0101),
         XML_START_ELEMENT(0x0102),
         XML_END_ELEMENT(0x0103),
@@ -26,7 +27,7 @@ abstract class Chunk {
         TABLE_PACKAGE(0x0200),
         TABLE_TYPE(0x0201),
         TABLE_TYPE_SPEC(0x0202),
-        TABLE_LIBRARY(0x0203);
+        TABLE_LIBRARY(0x0203)
 
         final short type
         static final Map<Short, Type> TYPES_MAP
@@ -77,25 +78,49 @@ abstract class Chunk {
         switch (type) {
             case Type.STRING_POOL:
                 chunk = new StringPoolChunk(buffer, parent)
-                break;
+                break
             case Type.TABLE:
                 chunk = new TableChunk(buffer, parent)
                 break
             case Type.TABLE_PACKAGE:
                 chunk = new TablePackageChunk(buffer, parent)
-                break;
+                break
             case Type.TABLE_TYPE:
                 chunk = new TableTypeChunk(buffer, parent)
-                break;
+                break
             case Type.TABLE_TYPE_SPEC:
                 chunk = new TableTypeSpecChunk(buffer, parent)
-                break;
+                break
+            case Type.TABLE_LIBRARY:
+                chunk = new TableLibraryChunk(buffer, parent)
+                break
+            case Type.XML:
+                chunk = new XmlChunk(buffer, parent)
+                break
+            case Type.XML_RESOURCE_MAP:
+                chunk = new XmlResourceMapChunk(buffer, parent)
+                break
+            case Type.XML_FIRST_CHUNK:
+                chunk = new XmlFirstChunk(buffer, parent)
+                break
+            case Type.XML_START_ELEMENT:
+                chunk = new XmlStartElementChunk(buffer, parent)
+                break
+            case Type.XML_END_ELEMENT:
+                chunk = new XmlEndElementChunk(buffer, parent)
+                break
+            case Type.XML_END_NAMESPACE:
+                chunk = new XmlEndNamespaceChunk(buffer, parent)
+                break
+            case Type.XML_CDATA:
+                chunk = new XmlCdataChunk(buffer, parent)
+                break
             default:
                 chunk = new UnknownChunk(buffer, parent)
-                break;
+                break
         }
-        chunk.init(buffer);
-        chunk.seekToEndOfChunk(buffer);
+        chunk.init(buffer)
+        chunk.seekToEndOfChunk(buffer)
         chunk
     }
 }

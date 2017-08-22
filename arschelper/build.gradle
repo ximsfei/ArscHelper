@@ -1,5 +1,5 @@
 group 'com.ximsfei'
-version '0.01'
+version '2.0.0'
 
 apply plugin: 'groovy'
 
@@ -27,9 +27,7 @@ uploadArchives {
         mavenDeployer {
             repository(url: "file:///Users/ximsfei/local/repo")
             pom.project {
-                groupId "com.ximsfei"
                 artifactId "arschelper"
-                version "1.0.0"
             }
 
         }

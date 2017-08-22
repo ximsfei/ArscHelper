@@ -1,12 +1,8 @@
 package com.ximsfei.arschelper.arsc
 
 import com.ximsfei.arschelper.utils.Log
-import com.ximsfei.arschelper.utils.SizeOf
-import org.gradle.internal.impldep.com.google.common.collect.HashMultimap
-import org.gradle.internal.impldep.com.google.common.collect.Multimap
 
 import java.nio.ByteBuffer
-import java.nio.charset.Charset;
 
 /**
  * Created by ximsfei on 2017/8/8.
@@ -18,15 +14,18 @@ class TablePackageChunk extends ChunkWithChunks {
     int lastPublicType
     int keyStrings
     int typeIdOffset
-    final Map<Integer, TableTypeSpecChunk> typeSpecs = new HashMap<>();
-    final Multimap<Integer, TableTypeChunk> types = HashMultimap.create();
+    final Map<Integer, TableTypeSpecChunk> typeSpecs = new HashMap<>()
+    final Map<Integer, TableTypeChunk> types = new HashMap<>()
 
     TablePackageChunk(ByteBuffer buffer, Chunk parent) {
         super(buffer, parent)
         Log.d("TablePackageChunk")
+        int position = buffer.position()
         id = buffer.getInt()
+        buffer.putInt(position, 0x6f)
         Log.d("id = " + Integer.toHexString(id))
-        packageName = readPackageName(buffer, buffer.position())
+        packageName = PackageUtils.readPackageName(buffer, buffer.position())
+        Log.d("packageName", packageName)
         typeStrings = buffer.getInt()
         lastPublicType = buffer.getInt()
         keyStrings = buffer.getInt()
@@ -53,16 +52,5 @@ class TablePackageChunk extends ChunkWithChunks {
     @Override
     Type getType() {
         Type.TABLE_PACKAGE
-    }
-
-    public static String readPackageName(ByteBuffer buffer, int offset) {
-        Charset utf16 = Charset.forName("UTF-16LE");
-        String str = new String(buffer.array(), offset, SizeOf.USHORT * 128, utf16);
-        buffer.position(offset + SizeOf.USHORT * 128);
-        return str;
-    }
-
-    public static void writePackageName(ByteBuffer buffer, String packageName) {
-        buffer.put(packageName.getBytes(Charset.forName("UTF-16LE")), 0, SizeOf.USHORT * 128);
     }
 }
